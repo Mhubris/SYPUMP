@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>SYPUMP</title>
+
+    <!--Scripts-->
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script>window.$ = window.jQuery = require('jquery');</script>
+    <script src="node_modules/dygraphs/dist/dygraph.js"></script>
+    <script src="src/js/Connection.js"></script>
+    <script src="src/js/UiControl.js"></script>
+    <!--Styles-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <!---Fonts--->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400" rel="stylesheet">
+    <!---Theme --->
+    <link rel="stylesheet" href="src/css/theme.css">
+    <link rel="stylesheet" href="src/css/connection.css">
+
+    <!--- Extras --->
+    <link rel="stylesheet" href="node_modules/dygraphs/dist/dygraph.css" />
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+<header>
+    <div class="nav-bar">
+        <div class="logo text-center pt-4">
+            <h1>sypump</h1>
+            <!--<p>Pressure Ulcer Monitoring System</p>-->
+        </div>
+        <div class="items-container position-relative flex-column h-100">
+            <div class="item active" id="item_one">
+                <span>Data Acquisition</span>
+                <i class="fas fa-wave-square"></i>
+            </div>
+            <div class="item" id="item_two">
+                <span>Capacitive Device</span>
+                <i class="fas fa-microscope"></i>
+            </div>
+            <div class="item" id="item_three">
+                <span>Simulation Results</span>
+                <i class="fas fa-keyboard"></i>
+            </div>
+            <div class="item" id="item_four">
+                <span>About</span>
+                <i class="fas fa-info-circle"></i>
+            </div>
+        </div>
+        <div class="device-connection d-flex flex-column">
+            <span>Serial</span>
+            <label class="switch">
+                <input type="checkbox" id="change-device-state">
+                <span class="slider round"></span>
+            </label>
+        </div>
+    </div>
+</header>
+
+<div class="container-fluid">
+    <div class="body mt-4">
+
+    </div>
+    <div class="pre-loader text-center">
+        <div class="lds-ripple">
+            <div></div>
+            <div></div>
+        </div>
+        <p class="message">Connecting</p>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(() => {
+        uiControl = new UiControl();
+        $(".items-container>.item#item_one").click();
+    });
+
+    // Interface Control
+    $(".items-container>.item").click(function () {
+        switch ($(this).attr("id")) {
+            case "item_one":
+                uiControl.tryToConnect();
+                break;
+        }
+    });
+
+    $("#change-device-state").change(function() {
+        if(this.checked) {
+            uiControl.tryToConnect();
+        }else{
+            uiControl.disconnect();
+        }
+    });
+</script>
+</body>
+</html>

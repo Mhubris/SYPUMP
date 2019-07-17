@@ -1,0 +1,73 @@
+<div class="data-acquisition-wrapper">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h2>Data Acquisition</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-10 col-sm-4 offset-1 offset-sm-0" id="capacitance-plot-container">
+            <div id="capacitanceChart"></div>
+        </div>
+        <div class="col-12 col-sm-4" id="temperature-plot-container">
+            <div id="temperatureChart"></div>
+        </div>
+        <div class="col-12 col-sm-4" id="humidity-plot-container">
+            <div id="humidityChart"></div>
+        </div>
+    </div>
+    <div class="row fixed-bottom interface">
+        <div class="col-4 ml-auto inputs">
+            <h3 class="featured-title">Controllers</h3>
+            <div class="row">
+                <div class="col-1">
+                    <button type="button" class="btn" id="start-acquisition"><i class="fas fa-play"></i></button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn" id="stop-acquisition"><i class="fas fa-pause"></i></button>
+                </div>
+                <div class="col-5 d-flex justify-content-center">
+                    <button type="button" class="btn" id="save-csv">Save as pdf</button>
+                </div>
+                <div class="col-5">
+                    <button type="button" class="btn" id="update-stats">Update Stats</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 mx-auto outputs">
+            <h3 class="featured-title">Stats </h3>
+            <div class="row">
+                <div class="col text-center">
+                    <p>SR: <span>13 hz</span></p>
+                </div>
+                <div class="col text-center">
+                    <p>Max-Peak: <span>13 F</span></p>
+                </div>
+                <div class="col text-center">
+                    <p>Min-Peak: <span>1 uF</span></p>
+                </div>
+                <div class="col text-center">
+                    <p>SD: <span>1</span></p>
+                </div>
+                <div class="col text-center">
+                    <p>AVG: <span>10 uF</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    // Controllers
+    $("#start-acquisition").click(()=>{
+        uiControl.setAcquistionPause(false);
+    });
+
+    $("#stop-acquisition").click(()=>{
+        uiControl.setAcquistionPause(true);
+    });
+
+    $('#save-csv').click(()=>{
+        uiControl.saveAsCsv();
+    });
+</script>

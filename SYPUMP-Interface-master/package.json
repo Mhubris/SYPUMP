@@ -1,0 +1,29 @@
+{
+  "name": "sypump_interface",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "author": "Miguel Andrade",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^4.1.4",
+    "electron-builder": "^20.39.0",
+    "electron-rebuild": "^1.8.4"
+  },
+  "dependencies": {
+    "dygraphs": "^2.1.0",
+    "jquery": "^3.4.0",
+    "serialport": "^7.1.4"
+  },
+  "build": {
+    "appId": "com.example.app",
+    "mac": {
+      "category": "com.example.app"
+    }
+  }
+}
